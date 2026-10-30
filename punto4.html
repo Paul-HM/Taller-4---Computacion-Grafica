@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller 4 - Ejercicios 4</title>
+</head>
+<body>
+    <h2>Ejercicio 4: más métodos de canvas</h2>
+    <canvas id="ejercicio4" width="960" height="420"
+        style="border: 2px solid #123f5b;">
+    </canvas>
+
+  <script>
+    let c4 = document.getElementById('ejercicio4');
+    let l4 = c4.getContext('2d');
+
+    function etiqueta(texto, x, y) {
+      l4.font = "13px Arial";
+      l4.fillStyle = "gray";
+      l4.fillText(texto, x, y);
+    }
+
+    // 1) fillRect, clearRect, strokeRect
+    l4.fillStyle = "orange";
+    l4.fillRect(20, 20, 120, 80);        
+    l4.clearRect(50, 40, 40, 30);       
+    l4.strokeStyle = "black";
+    l4.lineWidth = 3;
+    l4.strokeRect(160, 20, 120, 80);     
+    etiqueta("fillRect + clearRect / strokeRect", 20, 120);
+
+    // 2) Texto: fillText y strokeText
+    l4.font = "bold 30px Arial";
+    l4.fillStyle = "darkblue";
+    l4.fillText("Hola Canvas", 330, 55);
+    l4.lineWidth = 1;
+    l4.strokeStyle = "darkblue";
+    l4.strokeText("Hola Canvas", 330, 95);
+    etiqueta("fillText / strokeText + font", 330, 120);
+
+    // 3) Curva cuadrática y curva de Bézier
+    l4.lineWidth = 3;
+    l4.beginPath();
+    l4.strokeStyle = "red";
+    l4.moveTo(20, 220);
+    l4.quadraticCurveTo(100, 150, 180, 220); 
+    l4.stroke();
+
+    l4.beginPath();
+    l4.strokeStyle = "blue";
+    l4.moveTo(210, 220);
+    l4.bezierCurveTo(250, 150, 320, 290, 360, 220); 
+    l4.stroke();
+    etiqueta("quadraticCurveTo / bezierCurveTo", 20, 270);
+
+    // 4) Degradado lineal
+    let g = l4.createLinearGradient(440, 0, 620, 0);
+    g.addColorStop(0, "yellow");
+    g.addColorStop(1, "crimson");
+    l4.fillStyle = g;
+    l4.fillRect(440, 160, 180, 80);
+    etiqueta("createLinearGradient", 440, 270);
+
+    // 5) Línea punteada con setLineDash
+    l4.beginPath();
+    l4.strokeStyle = "green";
+    l4.lineWidth = 3;
+    l4.setLineDash([10, 8]);
+    l4.moveTo(660, 200);
+    l4.lineTo(930, 200);
+    l4.stroke();
+    l4.setLineDash([]);               
+    etiqueta("setLineDash([10, 8])", 660, 225);
+
+    // 6) Círculos rellenos con transparencia (arc + fill + globalAlpha)
+    l4.globalAlpha = 0.6;
+    l4.fillStyle = "purple";
+    l4.beginPath();
+    l4.arc(700, 90, 40, 0, Math.PI * 2);
+    l4.fill();
+    l4.fillStyle = "teal";
+    l4.beginPath();
+    l4.arc(750, 90, 40, 0, Math.PI * 2);
+    l4.fill();
+    l4.globalAlpha = 1;
+    etiqueta("arc + fill + globalAlpha", 680, 150);
+
+    // 7) save/restore con translate y rotate
+    l4.save();                        
+    l4.translate(120, 350);             
+    l4.rotate(Math.PI / 6);            
+    l4.fillStyle = "teal";
+    l4.fillRect(-50, -25, 100, 50);
+    l4.restore();                       
+    l4.fillStyle = "tomato";
+    l4.fillRect(260, 325, 100, 50);     
+    etiqueta("save / translate / rotate / restore", 20, 410);
+
+    // 8) scale
+    l4.save();
+    l4.translate(450, 330);
+    l4.scale(2, 1);                    
+    l4.beginPath();
+    l4.strokeStyle = "black";
+    l4.lineWidth = 2;
+    l4.arc(40, 20, 30, 0, Math.PI * 2);
+    l4.stroke();
+    l4.restore();
+    etiqueta("scale(2, 1)", 450, 410);
+  </script>
+
+</body>
+</html>

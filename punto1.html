@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller 4 - Ejercicios 1</title>
+</head>
+<body>
+    <h2>Ejercicio 1: tres circunferencias</h2>
+    <canvas id="ejercicio1" width="730" height="636"
+        style="border: 4px solid black;">
+    </canvas>
+    <script>
+        let c1 = document.getElementById('ejercicio1');
+        let l1 = c1.getContext('2d');
+        l1.scale(3, 3);  
+    
+        function circunferencia(lienzo, x, y, rx, ry, color) {
+            lienzo.beginPath();              
+            lienzo.strokeStyle = color;
+            lienzo.lineWidth = 1;
+            lienzo.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+            lienzo.stroke();
+        }
+    
+        circunferencia(l1, 75, 70, 75, 70, "green");      
+        circunferencia(l1, 168, 70, 75, 70, "blue");      
+        circunferencia(l1, 122, 142, 75, 70, "crimson");  
+    </script>
+
+</body>
+</html>

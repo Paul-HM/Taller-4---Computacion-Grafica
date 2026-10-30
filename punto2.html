@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller 4 - Ejercicio 2</title>
+</head>
+<body>
+    <h2>Ejercicio 2: caja en perspectiva</h2>
+    <canvas id="ejercicio2" width="900" height="500"
+        style="border: 2px solid #123f5b;">
+    </canvas>
+    <script>
+        let c2 = document.getElementById('ejercicio2');
+        let l2 = c2.getContext('2d');
+
+        function linea(x1, y1, x2, y2, color) {
+            l2.beginPath();
+            l2.strokeStyle = color;
+            l2.moveTo(x1, y1);
+            l2.lineTo(x2, y2);
+            l2.stroke();
+        }
+
+        linea(140, 440, 760, 440, "red");
+
+        let cx = 450;    
+        let base = 440;   
+        let m = 310;       
+
+        let izq = cx - m; 
+        let der = cx + m;  
+
+        linea(izq, 194, cx, 106, "blue");
+        linea(cx, 106, der, 194, "blue");
+        linea(der, 194, cx, 280, "blue");
+        linea(cx, 280, izq, 194, "blue");
+
+        linea(cx - 250, 192, cx, 126, "green");
+        linea(cx, 126, cx + 250, 192, "green");
+        linea(cx + 250, 192, cx, 260, "green");
+        linea(cx, 260, cx - 250, 192, "green");
+
+        linea(cx, 126, cx, 260, "green");
+
+        linea(izq, 194, izq, 354, "black");
+        linea(der, 194, der, 354, "black");
+        linea(cx, 280, cx, base, "black");
+
+        linea(izq, 354, cx, base, "purple");
+        linea(cx, base, der, 354, "purple");
+    </script>
+
+</body>
+</html>
